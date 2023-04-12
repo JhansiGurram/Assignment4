@@ -2,6 +2,13 @@ import boto3
 import config
 import json
 
+
+
+with open("config.json", "r") as f:
+    config = json.load(f)
+print(config['email_Id'])
+Endpoint = config['email_Id']
+
 client = boto3.client('secretsmanager')
 
 
@@ -25,7 +32,7 @@ topic_arn = response['TopicArn']
 response=sns_client.subscribe(
     TopicArn=topic_arn,
     Protocol='email',
-    Endpoint=config.email_Id
+    Endpoint=config['email_Id']
 )
 
 sns = boto3.client('sns')
