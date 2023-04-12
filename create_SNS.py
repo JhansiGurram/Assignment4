@@ -27,3 +27,13 @@ response=sns_client.subscribe(
     Protocol='email',
     Endpoint=config.email_Id
 )
+
+sns = boto3.client('sns')
+# Publish a simple message to the specified SNS topic
+response = sns.publish(
+    TopicArn=topic_arn,   
+    Message='Hello World',   
+)
+
+# Print out the response
+print(response)
